@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class flightModel {
     private int id;
-    private String flightId;
+    // note for Gavin: remove 'flightID' from database
 private String origin;
 private String destination;
 private Date depTime;
 private Date arriveTime;
 private String type;
-private int seatsLeft;
-private int seatsTaken;
+    private int seatsTaken; // note: i moved seatsTaken before seatsLeft, might have to edit database
+    private int seatsLeft;
 private int fair;
 
     public int getId() {
@@ -20,14 +20,6 @@ private int fair;
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(String flightId) {
-        this.flightId = flightId;
     }
 
     public String getOrigin() {

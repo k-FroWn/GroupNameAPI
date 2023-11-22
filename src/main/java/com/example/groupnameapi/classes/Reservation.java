@@ -5,25 +5,29 @@ import java.util.Date;
 
 public class Reservation {
     private int id;
-    private int flightID;
-    private Date journeyDate;
-    private Date reservationDate;
+    private String flightNumber;
+    private String dateOfFlight;
     private String name;
-    private String email; // TEST EMAIL WITH REGEX OR OTHER VALID EMAIL TEST
-    private MonetaryAmount fare;
-    private String flightStatus;
-    private boolean confirmed;
+    private String email;
+    private String status;
+    private String reservedBy;
+    private String dateOfRes;
+    private String confirmed;
+    private String fare;
+    private String ticketNo;
 
-    public Reservation(int id, int flightID, Date journeyDate, Date reservationDate, String name, String email, MonetaryAmount fare, String flightStatus, boolean confirmed) {
+    public Reservation(int id, String flightNumber, String dateOfFlight, String name, String email, String status, String reservedBy, String dateOfRes, String confirmed, String fare, String ticketNo) {
         this.id = id;
-        this.flightID = flightID;
-        this.journeyDate = journeyDate;
-        this.reservationDate = reservationDate;
+        this.flightNumber = flightNumber;
+        this.dateOfFlight = dateOfFlight;
         this.name = name;
         this.email = email;
-        this.fare = fare;
-        this.flightStatus = flightStatus;
+        this.status = status;
+        this.reservedBy = reservedBy;
+        this.dateOfRes = dateOfRes;
         this.confirmed = confirmed;
+        this.fare = fare;
+        this.ticketNo = ticketNo;
     }
 
     public int getId() {
@@ -34,28 +38,20 @@ public class Reservation {
         this.id = id;
     }
 
-    public int getFlightID() {
-        return flightID;
+    public String getFlightNumber() {
+        return flightNumber;
     }
 
-    public void setFlightID(int flightID) {
-        this.flightID = flightID;
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
     }
 
-    public Date getJourneyDate() {
-        return journeyDate;
+    public String getDateOfFlight() {
+        return dateOfFlight;
     }
 
-    public void setJourneyDate(Date journeyDate) {
-        this.journeyDate = journeyDate;
-    }
-
-    public Date getReservationDate() {
-        return reservationDate;
-    }
-
-    public void setReservationDate(Date reservationDate) {
-        this.reservationDate = reservationDate;
+    public void setDateOfFlight(String dateOfFlight) {
+        this.dateOfFlight = dateOfFlight;
     }
 
     public String getName() {
@@ -74,27 +70,51 @@ public class Reservation {
         this.email = email;
     }
 
-    public MonetaryAmount getFare() {
-        return fare;
+    public String getStatus() {
+        return status;
     }
 
-    public void setFare(MonetaryAmount fare) {
-        this.fare = fare;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getFlightStatus() {
-        return flightStatus;
+    public String getReservedBy() {
+        return reservedBy;
     }
 
-    public void setFlightStatus(String flightStatus) {
-        this.flightStatus = flightStatus;
+    public void setReservedBy(String reservedBy) {
+        this.reservedBy = reservedBy;
     }
 
-    public boolean isConfirmed() {
+    public String getDateOfRes() {
+        return dateOfRes;
+    }
+
+    public void setDateOfRes(String dateOfRes) {
+        this.dateOfRes = dateOfRes;
+    }
+
+    public String getConfirmed() {
         return confirmed;
     }
 
-    public void setConfirmed(boolean confirmed) {
+    public void setConfirmed(String confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public String getFare() {
+        return fare;
+    }
+
+    public void setFare(String fare) {
+        this.fare = fare;
+    }
+
+    public String getTicketNo() {
+        return ticketNo;
+    }
+
+    public void setTicketNo(String ticketNo) {
+        this.ticketNo = ticketNo;
     }
 }

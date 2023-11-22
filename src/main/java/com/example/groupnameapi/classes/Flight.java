@@ -13,23 +13,23 @@ public class Flight {
     private Time departureTime;
     private Time arrivalTime;
     private String aircraftType;
-    private boolean seatsAvailable;
+    private int seatsTaken;
+    private int seatsLeft;
     private String fare;
-    private Date flightDate;
 
     private static final DateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Flight(int id, String origin, String destination, String departureTime, String arrivalTime, String aircraftType, boolean seatsAvailable, String fare, String flightDate) throws ParseException {
+    public Flight(int id, String origin, String destination, String departureTime, String arrivalTime, String aircraftType, int seatsLeft, int seatsTaken, String fare) throws ParseException {
         this.id = id;
         this.origin = origin;
         this.destination = destination;
         this.departureTime = new Time(TIME_FORMAT.parse(departureTime).getTime());
         this.arrivalTime = new Time(TIME_FORMAT.parse(arrivalTime).getTime());
         this.aircraftType = aircraftType;
-        this.seatsAvailable = seatsAvailable;
+        this.seatsTaken = seatsTaken;
+        this.seatsLeft = seatsLeft;
         this.fare = fare;
-        this.flightDate = DATE_FORMAT.parse(flightDate);
     }
 
     public int getId() {
@@ -80,12 +80,20 @@ public class Flight {
         this.aircraftType = aircraftType;
     }
 
-    public boolean isSeatsAvailable() {
-        return seatsAvailable;
+    public int getSeatsLeft() {
+        return seatsLeft;
     }
 
-    public void setSeatsAvailable(boolean seatsAvailable) {
-        this.seatsAvailable = seatsAvailable;
+    public void setSeatsLeft(int seatsLeft) {
+        this.seatsLeft = seatsLeft;
+    }
+
+    public int getSeatsTaken() {
+        return seatsTaken;
+    }
+
+    public void setSeatsTaken(int seatsTaken) {
+        this.seatsTaken = seatsTaken;
     }
 
     public String getFare() {
@@ -94,13 +102,5 @@ public class Flight {
 
     public void setFare(String fare) {
         this.fare = fare;
-    }
-
-    public Date getFlightDate() {
-        return flightDate;
-    }
-
-    public void setFlightDate(Date flightDate) {
-        this.flightDate = flightDate;
     }
 }
