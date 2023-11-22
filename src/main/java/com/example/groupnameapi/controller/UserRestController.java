@@ -1,8 +1,10 @@
 package com.example.groupnameapi.controller;
 
 import com.example.groupnameapi.classes.User;
-import com.example.groupnameapi.model.UserHandler;
+import com.example.groupnameapi.handlers.UserHandler;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/users")
@@ -11,6 +13,9 @@ public class UserRestController {
 
     @RequestMapping(path="", method = RequestMethod.POST)
     public String createUser(@RequestBody User user) {
+        // TODO: grab user ID from database and assign a consecutive value
+        // user.setID(value)
+        user.setRole(false);
         userHandler.addUser(user);
         return "User " + user.getId() + " added.";
     }
@@ -21,6 +26,11 @@ public class UserRestController {
         // UI will take in object as JSON object, parse into object and print out values
     }
 
+    @RequestMapping(path="", method = RequestMethod.GET)
+    public ArrayList<User> findAllUsers() {
+        return userHandler.findAllUsers();
+    }
+
     @RequestMapping(path="/{id}", method = RequestMethod.PUT)
     public String updateUser(@PathVariable int id, @RequestBody User user) {
         user.setId(id);
@@ -28,9 +38,9 @@ public class UserRestController {
         return "User " + id + " updated.";
     }
 
-    @RequestMapping(path="/{id}", method = RequestMethod.DELETE)
-    public String deleteUser(@PathVariable int id) {
-        userHandler.removeUser(id);
+    @RequestMapping(path="/{id}/{password}", method = RequestMethod.DELETE)
+    public String deleteUser(@PathVariable int id, @PathVariable String password) {
+        userHandler.removeUser(id, password);
         return "User " + id + "removed.";
     }
 

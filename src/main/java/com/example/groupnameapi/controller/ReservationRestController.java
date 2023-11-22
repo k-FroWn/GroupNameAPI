@@ -1,7 +1,7 @@
 package com.example.groupnameapi.controller;
 
 import com.example.groupnameapi.classes.Reservation;
-import com.example.groupnameapi.model.ReservationHandler;
+import com.example.groupnameapi.handlers.ReservationHandler;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

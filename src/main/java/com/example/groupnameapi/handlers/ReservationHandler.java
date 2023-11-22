@@ -1,4 +1,4 @@
-package com.example.groupnameapi.model;
+package com.example.groupnameapi.handlers;
 
 import com.example.groupnameapi.classes.Reservation;
 
