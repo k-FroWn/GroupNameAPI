@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class flightModel {
     private int id;
-    private String flightId;
+    private int flightId;
 private String origin;
 private String destination;
 private Date depTime;
@@ -12,7 +12,7 @@ private Date arriveTime;
 private String type;
 private int seatsLeft;
 private int seatsTaken;
-private int fair;
+private int fare;
 
     public int getId() {
         return id;
@@ -22,11 +22,11 @@ private int fair;
         this.id = id;
     }
 
-    public String getFlightId() {
+    public int getFlightId() {
         return flightId;
     }
 
-    public void setFlightId(String flightId) {
+    public void setFlightId(int flightId) {
         this.flightId = flightId;
     }
 
@@ -86,11 +86,11 @@ private int fair;
         this.seatsTaken = seatsTaken;
     }
 
-    public int getFair() {
-        return fair;
+    public int getFare() {
+        return fare;
     }
 
-    public void setFair(int fair) {
-        this.fair = fair;
+    public void setFare(int fare) {
+        this.fare = fare;
     }
 }

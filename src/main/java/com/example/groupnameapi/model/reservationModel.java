@@ -1,17 +1,19 @@
 package com.example.groupnameapi.model;
 
+import java.util.Date;
+
 public class reservationModel {
     private int id;
-    private String flightNumber;
-    private String dateOfFlight;
+    private int flightNumber;
+    private Date dateOfFlight;
     private String name;
     private String email;
     private String status;
-    private String reservedBy;
-    private String dateOfRes;
-    private String confirmed;
-    private String fare;
-    private String ticketNo;
+    private int reservedBy;
+    private Date dateOfRes;
+    private boolean confirmed;
+    private int fare;
+    private int ticketNo;
 
     public int getId() {
         return id;
@@ -21,19 +23,19 @@ public class reservationModel {
         this.id = id;
     }
 
-    public String getFlightNumber() {
+    public int getFlightNumber() {
         return flightNumber;
     }
 
-    public void setFlightNumber(String flightNumber) {
+    public void setFlightNumber(int flightNumber) {
         this.flightNumber = flightNumber;
     }
 
-    public String getDateOfFlight() {
+    public Date getDateOfFlight() {
         return dateOfFlight;
     }
 
-    public void setDateOfFlight(String dateOfFlight) {
+    public void setDateOfFlight(Date dateOfFlight) {
         this.dateOfFlight = dateOfFlight;
     }
 
@@ -61,43 +63,43 @@ public class reservationModel {
         this.status = status;
     }
 
-    public String getReservedBy() {
+    public int getReservedBy() {
         return reservedBy;
     }
 
-    public void setReservedBy(String reservedBy) {
+    public void setReservedBy(int reservedBy) {
         this.reservedBy = reservedBy;
     }
 
-    public String getDateOfRes() {
+    public Date getDateOfRes() {
         return dateOfRes;
     }
 
-    public void setDateOfRes(String dateOfRes) {
+    public void setDateOfRes(Date dateOfRes) {
         this.dateOfRes = dateOfRes;
     }
 
-    public String getConfirmed() {
+    public boolean getConfirmed() {
         return confirmed;
     }
 
-    public void setConfirmed(String confirmed) {
+    public void setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
     }
 
-    public String getFare() {
+    public int getFare() {
         return fare;
     }
 
-    public void setFare(String fare) {
+    public void setFare(int fare) {
         this.fare = fare;
     }
 
-    public String getTicketNo() {
+    public int getTicketNo() {
         return ticketNo;
     }
 
-    public void setTicketNo(String ticketNo) {
+    public void setTicketNo(int ticketNo) {
         this.ticketNo = ticketNo;
     }
 }

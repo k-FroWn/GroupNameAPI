@@ -1,13 +1,11 @@
-package com.example.groupnameapi.controller;
+package com.example.groupnameapi.controller.DbInteraction;
 
-import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.function.DoubleToIntFunction;
 
-public class DB {
+public class DBUser {
 
     static String url = "jdbc:mysql://127.0.0.1:3306/"
             + "groupnamedatabase?allowPublicKeyRetrieval=true&useSSL=false";

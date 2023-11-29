@@ -6,6 +6,7 @@ public class flightStatusModel {
     private int id;
     private int flightNo;
     private Date lastUpdated;
+    private String status;
 
     public int getId() {
         return id;
@@ -29,5 +30,13 @@ public class flightStatusModel {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
