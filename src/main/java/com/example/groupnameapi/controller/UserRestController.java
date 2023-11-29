@@ -44,5 +44,9 @@ public class UserRestController {
         return "User " + id + "removed.";
     }
 
+    @GetMapping("/login")
+    public void login() {
+
+    }
 
 }
