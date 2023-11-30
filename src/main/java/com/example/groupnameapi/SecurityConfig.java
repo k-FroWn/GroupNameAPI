@@ -32,7 +32,7 @@ public class SecurityConfig {
         List<UserDetails> userDetailsList = new ArrayList<>();
 
         userDetailsList.add(User.withUsername("ethan").password(passwordEncoder().encode("hunt"))
-                .roles("MISSIONS").build());
+                .roles("ADMIN").build());
 
         return new InMemoryUserDetailsManager(userDetailsList);
 
