@@ -14,7 +14,7 @@ public class DBUser {
             + "groupnamedatabase?allowPublicKeyRetrieval=true&useSSL=false";
 
     static String user = "root";
-    static String password = "80184";
+    static String password = "rootpass@2005";
 
     public static void createUser(int id, String username, String Password, String role, String email) {
         String sql = "Insert into groupnamedatabase.users(id,userName,password,role,email) Values(?,?,?,?,?)";

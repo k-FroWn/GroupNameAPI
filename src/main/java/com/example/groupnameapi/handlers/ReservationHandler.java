@@ -1,6 +1,7 @@
 package com.example.groupnameapi.handlers;
 
 import com.example.groupnameapi.classes.Reservation;
+import com.example.groupnameapi.controller.DbInteraction.DBRes;
 
 import java.util.ArrayList;
 
@@ -9,26 +10,30 @@ public class ReservationHandler {
     ArrayList<Reservation> reservations = new ArrayList<>();
 
     public void addReservation(Reservation reservation) {
-        reservations.add(reservation);
+        DBRes.createReservation(reservation.getId(), reservation.getFlightNumber(), reservation.getDateOfFlight(), reservation.getName(), reservation.getEmail(), reservation.getStatus(), reservation.getReservedBy(), reservation.getDateOfRes(), reservation.getConfirmed(), reservation.getFare(), reservation.getTicketNo());
+//        reservations.add(reservation);
     }
 
     public Reservation findReservationById(int id) {
-        return reservations.stream().filter(reservation -> reservation.getId() == id)
-                .findFirst()
-                .orElse(null);
+        return DBRes.selectOneReservation(1);
+//        return reservations.stream().filter(reservation -> reservation.getId() == id)
+//                .findFirst()
+//                .orElse(null);
     }
 
     public ArrayList<Reservation> findAllReservations() {
-        return reservations;
+        return DBRes.selectReservations();
+//        return reservations;
     }
 
     public void updateReservation(Reservation reservation) {
-        for (Reservation currReservation : reservations) {
-            if (currReservation.getId() == reservation.getId()) {
-                reservations.set(getIndex(currReservation), reservation);
-                break;
-            }
-        }
+        DBRes.updateReservation(reservation.getFlightNumber(), reservation.getDateOfFlight(), reservation.getName(), reservation.getEmail(), reservation.getStatus(), reservation.getReservedBy(), reservation.getDateOfRes(), reservation.getConfirmed(), reservation.getFare(), reservation.getTicketNo(),reservation.getId());
+//        for (Reservation currReservation : reservations) {
+//            if (currReservation.getId() == reservation.getId()) {
+//                reservations.set(getIndex(currReservation), reservation);
+//                break;
+//            }
+//        }
     }
 
     public int getIndex(Object obj) {

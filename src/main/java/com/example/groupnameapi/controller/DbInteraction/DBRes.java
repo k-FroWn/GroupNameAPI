@@ -1,6 +1,9 @@
 package com.example.groupnameapi.controller.DbInteraction;
 
+import com.example.groupnameapi.classes.Reservation;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBRes {
 
@@ -36,32 +39,64 @@ public class DBRes {
 
     }
 
-    public static void selectReservation() {
+    public static Reservation selectOneReservation(int id) {
+        String sql = "Select * from groupnamedatabase.reservations where id=(?)";
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+
+            rs.next();
+            return new Reservation(
+                    rs.getInt("id"),
+                    rs.getInt("flightNumber"),
+                    rs.getDate("dateOfFlight"),
+                    rs.getString("name"),
+                    rs.getString("email"),
+                    rs.getString("status"),
+                    rs.getInt("reservedBy"),
+                    rs.getDate("dateOfRes"),
+                    rs.getBoolean("confirmed"),
+                    rs.getInt("fare"),
+                    rs.getInt("ticketNo")
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ArrayList<Reservation> selectReservations() {
         String sql = "Select id,flightNumber, dateOfFlight,  name,  email,  status,reservedBy,  dateOfRes,  confirmed,  fare,  ticketNo from groupnamedatabase.reservations";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
             PreparedStatement pst = conn.prepareStatement(sql);
+
             ResultSet rs = pst.executeQuery();
-
+            ArrayList<Reservation> reservations = new ArrayList<Reservation>();
             while (rs.next()) {
-                System.out.println(rs.getInt("id"));
-                System.out.println(rs.getString("flightNumber"));
-                System.out.println(rs.getString("dateOfFlight"));
-                System.out.println(rs.getString("name"));
-                System.out.println(rs.getString("email"));
-                System.out.println(rs.getString("status"));
-                System.out.println(rs.getString("reservedBy"));
-                System.out.println(rs.getString("dateOfRes"));
-                System.out.println(rs.getString("confirmed"));
-                System.out.println(rs.getString("fare"));
-                System.out.println(rs.getString("ticketNo") + "\n\n\n");
+                reservations.add(new Reservation(
+                        rs.getInt("id"),
+                        rs.getInt("flightNumber"),
+                        rs.getDate("dateOfFlight"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("status"),
+                        rs.getInt("reservedBy"),
+                        rs.getDate("dateOfRes"),
+                        rs.getBoolean("confirmed"),
+                        rs.getInt("fare"),
+                        rs.getInt("ticketNo")
+                ));
             }
-
-
+            return reservations;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
+
 
     public static void deleteReservation(int id) {
         String sql = "Delete from groupnamedatabase.reservations where id=(?)";

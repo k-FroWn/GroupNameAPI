@@ -1,9 +1,13 @@
 package com.example.groupnameapi.controller.DbInteraction;
 
+import com.example.groupnameapi.classes.Passenger;
+import org.springframework.security.core.parameters.P;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DBPassengerDetails {
 
@@ -32,25 +36,50 @@ public class DBPassengerDetails {
     }
 
 
-    public static void selectPassengerDetails() {
+    public static Passenger selectPassengerDetails(int id) {
+        String sql = "Select id,  email,  fareCollected,  totalTimesFlown, customerID from groupnamedatabase.passangerdetail where id=(?)";
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            return new Passenger(
+                    rs.getInt("id"),
+                    rs.getString("email"),
+                    rs.getBoolean("fareCollected"),
+                    rs.getInt("totalTimesFlown"),
+                    rs.getInt("customerID")
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ArrayList<Passenger> selectAllPassengerDetails() {
         String sql = "Select id,  email,  fareCollected,  totalTimesFlown, customerID from groupnamedatabase.passangerdetail";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
+            ArrayList<Passenger> passengers = new ArrayList<>();
 
             while (rs.next()) {
-                System.out.println(rs.getInt("id"));
-                System.out.println(rs.getString("email"));
-                System.out.println(rs.getBoolean("fareCollected"));
-                System.out.println(rs.getInt("totalTimesFlown"));
-                System.out.println(rs.getInt("customerID")+"\n\n\n");
+                passengers.add(new Passenger(
+                        rs.getInt("id"),
+                        rs.getString("email"),
+                        rs.getBoolean("fareCollected"),
+                        rs.getInt("totalTimesFlown"),
+                        rs.getInt("customerID")
+                ));
             }
-
-
+            return passengers;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public static void deletePassengerDetails(int id) {

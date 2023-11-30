@@ -3,11 +3,11 @@ package com.example.groupnameapi.classes;
 public class Passenger {
     private int id;
     private String email;
-    private String fareCollected;
-    private String totalTimesFlown;
-    private String customerID;
+    private boolean fareCollected;
+    private int totalTimesFlown;
+    private int customerID;
 
-    public Passenger(int id, String email, String fareCollected, String totalTimesFlown, String customerID) {
+    public Passenger(int id, String email, boolean fareCollected, int totalTimesFlown, int customerID) {
         this.id = id;
         this.email = email;
         this.fareCollected = fareCollected;
@@ -31,27 +31,27 @@ public class Passenger {
         this.email = email;
     }
 
-    public String getFareCollected() {
+    public boolean getFareCollected() {
         return fareCollected;
     }
 
-    public void setFareCollected(String fareCollected) {
+    public void setFareCollected(boolean fareCollected) {
         this.fareCollected = fareCollected;
     }
 
-    public String getTotalTimesFlown() {
+    public int getTotalTimesFlown() {
         return totalTimesFlown;
     }
 
-    public void setTotalTimesFlown(String totalTimesFlown) {
+    public void setTotalTimesFlown(int totalTimesFlown) {
         this.totalTimesFlown = totalTimesFlown;
     }
 
-    public String getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(String customerID) {
+    public void setCustomerID(int customerID) {
         this.customerID = customerID;
     }
 }
