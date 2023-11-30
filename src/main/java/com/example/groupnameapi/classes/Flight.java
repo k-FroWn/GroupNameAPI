@@ -1,26 +1,34 @@
 package com.example.groupnameapi.classes;
 
-import javax.money.MonetaryAmount;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Flight {
     private int id;
     private String origin;
     private String destination;
-    private Date departureTime;
-    private Date arrivalTime;
+    private Time departureTime;
+    private Time arrivalTime;
     private String aircraftType;
-    private boolean seatsAvailable;
-    private MonetaryAmount fare;
+    private int seatsTaken;
+    private int seatsLeft;
+    private String fare;
 
-    public Flight(int id, String origin, String destination, Date departureTime, Date arrivalTime, String aircraftType, boolean seatsAvailable, MonetaryAmount fare) {
+    private static final DateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
+    public Flight(int id, String origin, String destination, String departureTime, String arrivalTime, String aircraftType, int seatsLeft, int seatsTaken, String fare) throws ParseException {
         this.id = id;
         this.origin = origin;
         this.destination = destination;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
+        this.departureTime = new Time(TIME_FORMAT.parse(departureTime).getTime());
+        this.arrivalTime = new Time(TIME_FORMAT.parse(arrivalTime).getTime());
         this.aircraftType = aircraftType;
-        this.seatsAvailable = seatsAvailable;
+        this.seatsTaken = seatsTaken;
+        this.seatsLeft = seatsLeft;
         this.fare = fare;
     }
 
@@ -48,19 +56,19 @@ public class Flight {
         this.destination = destination;
     }
 
-    public Date getDepartureTime() {
+    public Time getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(Time departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Date getArrivalTime() {
+    public Time getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(Time arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -72,19 +80,27 @@ public class Flight {
         this.aircraftType = aircraftType;
     }
 
-    public boolean isSeatsAvailable() {
-        return seatsAvailable;
+    public int getSeatsLeft() {
+        return seatsLeft;
     }
 
-    public void setSeatsAvailable(boolean seatsAvailable) {
-        this.seatsAvailable = seatsAvailable;
+    public void setSeatsLeft(int seatsLeft) {
+        this.seatsLeft = seatsLeft;
     }
 
-    public MonetaryAmount getFare() {
+    public int getSeatsTaken() {
+        return seatsTaken;
+    }
+
+    public void setSeatsTaken(int seatsTaken) {
+        this.seatsTaken = seatsTaken;
+    }
+
+    public String getFare() {
         return fare;
     }
 
-    public void setFare(MonetaryAmount fare) {
+    public void setFare(String fare) {
         this.fare = fare;
     }
 }

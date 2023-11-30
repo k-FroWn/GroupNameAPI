@@ -4,13 +4,18 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private boolean isAdmin; // (role parameter)
+    private boolean role; // (role parameter)
+    private String email;
 
-    public User(int id, String username, String password, boolean isAdmin) {
+    public User() {
+    }
+
+    public User(int id, String username, String password, boolean role, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.role = role;
+        this.email = email;
     }
 
     public int getId() {
@@ -37,11 +42,19 @@ public class User {
         this.password = password;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public boolean getRole() {
+        return role;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setRole(boolean role) {
+        this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
