@@ -1,20 +1,20 @@
 package com.example.groupnameapi.handlers;
 
-import com.example.groupnameapi.classes.User;
+import com.example.groupnameapi.classes.UserF;
 import com.example.groupnameapi.controller.DbInteraction.DBUser;
 
 import java.util.ArrayList;
 
 public class UserHandler {
     // TEMPORARY ARRAYLIST UNTIL DATABASE CONNECTION IS MADE
-    ArrayList<User> users = new ArrayList<>();
+    ArrayList<UserF> users = new ArrayList<>();
 
-    public void addUser(User user) {
+    public void addUser(UserF user) {
         users.add(user);
         DBUser.createUser(user.getId(),user.getUsername(),user.getPassword(),user.getRole(),user.getEmail());
     }
 
-    public User findUserById(int id) {
+    public UserF findUserById(int id) {
         return DBUser.selectUser(id);
 //        return users.stream().filter(user -> user.getId() == id)
 //                .findFirst()
@@ -22,12 +22,12 @@ public class UserHandler {
 
     }
 
-    public ArrayList<User> findAllUsers() {
-        return DBUser.selectUser();
+    public ArrayList<UserF> findAllUsers() {
+        return DBUser.selectAllUsers();
 //        return users;
     }
 
-    public void updateUser(User user) {
+    public void updateUser(UserF user) {
         DBUser.updateUser(user.getUsername(),user.getPassword(),user.getRole(),user.getEmail(), user.getId());
 //        for (User currUser : users) {
 //            if (currUser.getId() == user.getId()) {
@@ -43,13 +43,13 @@ public class UserHandler {
     }
 
     public int getIndex(Object obj) {
-        if (obj instanceof User) {
+        if (obj instanceof UserF) {
             return users.indexOf(obj);
         }
         return -1;
     }
 
-    public User findByUsernamePassword(String username, String password) {
+    public UserF findByUsernamePassword(String username, String password) {
         String Password="0";
         return DBUser.selectUser(username,Password);
     }

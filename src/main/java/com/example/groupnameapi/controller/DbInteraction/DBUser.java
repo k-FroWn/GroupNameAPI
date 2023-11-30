@@ -1,6 +1,6 @@
 package com.example.groupnameapi.controller.DbInteraction;
 
-import com.example.groupnameapi.classes.User;
+import com.example.groupnameapi.classes.UserF;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,8 +35,8 @@ public class DBUser {
     }
 
 
-    public static User selectUser(String username, String Password) {
-        User theUser = new User();
+    public static UserF selectUser(String username, String Password) {
+        UserF theUser = new UserF();
         String sql = "Select id,userName,password,role,email from groupnamedatabase.users where username=(?) and password=(?)";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
@@ -56,7 +56,7 @@ public class DBUser {
                 String password = rs.getString("password");
                 String role = rs.getString("role");
                 String email = rs.getString("email");
-                theUser = new User(id, theUsername, password, role, email);
+                theUser = new UserF(id, theUsername, password, role, email);
             }
 
 
@@ -66,8 +66,8 @@ public class DBUser {
         return theUser;
     }
 
-    public static User selectUser(int id) {
-        User theUser = new User();
+    public static UserF selectUser(int id) {
+        UserF theUser = new UserF();
         String sql = "Select id,userName,password,role,email from groupnamedatabase.users where id=(?)";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
@@ -87,7 +87,7 @@ public class DBUser {
                 String password = rs.getString("password");
                 String role = rs.getString("role");
                 String email = rs.getString("email");
-                theUser = new User(theId, theUsername, password, role, email);
+                theUser = new UserF(theId, theUsername, password, role, email);
             }
 
 
@@ -98,8 +98,8 @@ public class DBUser {
     }
 
 
-    public static ArrayList<User> selectUser() {
-        ArrayList<User> Users= new ArrayList<>();
+    public static ArrayList<UserF> selectAllUsers() {
+        ArrayList<UserF> Users= new ArrayList<>();
         String sql = "Select id,userName,password,role,email from groupnamedatabase.users ";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
@@ -119,7 +119,7 @@ public class DBUser {
                 String password = rs.getString("password");
                 String role = rs.getString("role");
                 String email = rs.getString("email");
-                User theUser = new User(id, theUsername, password, role, email);
+                UserF theUser = new UserF(id, theUsername, password, role, email);
                 Users.add(theUser);
 
 

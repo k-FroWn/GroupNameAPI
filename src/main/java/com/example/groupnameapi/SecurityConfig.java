@@ -1,6 +1,7 @@
 package com.example.groupnameapi;
 
-import com.example.groupnameapi.classes.Passenger;
+import com.example.groupnameapi.classes.UserF;
+import com.example.groupnameapi.controller.DbInteraction.DBUser;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +34,11 @@ public class SecurityConfig {
 
         userDetailsList.add(User.withUsername("ethan").password(passwordEncoder().encode("hunt"))
                 .roles("ADMIN").build());
+
+        for (UserF u : DBUser.selectAllUsers()) {
+            userDetailsList.add(User.withUsername(u.getUsername()).password(passwordEncoder().encode(u.getPassword()))
+                    .roles(u.getRole()).build());
+        }
 
         return new InMemoryUserDetailsManager(userDetailsList);
 

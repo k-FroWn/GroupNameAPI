@@ -1,16 +1,16 @@
 package com.example.groupnameapi.classes;
 
-public class User {
+public class UserF {
     private int id;
     private String username;
     private String password;
     private String role; // (role parameter)
     private String email;
 
-    public User() {
+    public UserF() {
     }
 
-    public User(int id, String username, String password, String role, String email) {
+    public UserF(int id, String username, String password, String role, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
