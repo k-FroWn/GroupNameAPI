@@ -15,7 +15,7 @@ public class UserRestController {
     public String createUser(@RequestBody User user) {
         // TODO: grab user ID from database and assign a consecutive value
         // user.setID(value)
-        user.setRole(false);
+        user.setRole("placeHolder");//not sure what this does, but it can not be a bool
         userHandler.addUser(user);
         return "User " + user.getId() + " added.";
     }
@@ -23,6 +23,12 @@ public class UserRestController {
     @RequestMapping(path="/{id}", method = RequestMethod.GET)
     public User findOneUser(@PathVariable int id) {
         return userHandler.findUserById(id);
+        // UI will take in object as JSON object, parse into object and print out values
+    }
+
+    @RequestMapping(path="/{username}/{password}", method = RequestMethod.GET)
+    public User findOneUser(@PathVariable String username,@PathVariable String password) {
+        return userHandler.findByUsernamePassword(username,password);
         // UI will take in object as JSON object, parse into object and print out values
     }
 
