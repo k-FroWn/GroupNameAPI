@@ -11,19 +11,19 @@ public class DBFlight {
             + "groupnamedatabase?allowPublicKeyRetrieval=true&useSSL=false";
 
     static String user = "root";
-    static String password = "80184";
+    static String password = "rootpass@2005";
 
     // removed FlightID, i thought we had already removed it from the database model
-    public static void createFlight(int id, String origin, String destination, Date depTime, Date arriveTime, String type, int seatsLeft, int seatsTaken, int fare) {
-        String sql = "Insert into groupnamedatabase.flights(id,flightId,origin,destination,depTime,arriveTime,type,seatsLeft,seatsTaken,fare) Values(?,?,?,?,?,?,?,?,?,?)";
+    public static void createFlight(int id, String origin, String destination, String depTime, String arriveTime, String type, int seatsLeft, int seatsTaken, int fare) {
+        String sql = "Insert into groupnamedatabase.flights(id,origin,destination,depTime,arriveTime,type,seatsLeft,seatsTaken,fare) Values(?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1, id);
             pst.setString(2, origin);
             pst.setString(3, destination);
-            pst.setDate(4, depTime);
-            pst.setDate(5, arriveTime);
+            pst.setString(4, depTime);
+            pst.setString(5, arriveTime);
             pst.setString(6, type);
             pst.setInt(7, seatsLeft);
             pst.setInt(8, seatsTaken);
@@ -49,8 +49,8 @@ public class DBFlight {
                     rs.getInt("id"),
                     rs.getString("origin"),
                     rs.getString("destination"),
-                    rs.getDate("depTime"),
-                    rs.getDate("arriveTime"),
+                    rs.getString("depTime"),
+                    rs.getString("arriveTime"),
                     rs.getString("type"),
                     rs.getInt("seatsLeft"),
                     rs.getInt("seatsTaken"),
@@ -70,17 +70,20 @@ public class DBFlight {
             ResultSet rs = pst.executeQuery();
             ArrayList<Flight> flights = new ArrayList<>();
             while (rs.next()) {
-                System.out.println(rs.getInt("id"));
-                System.out.println(rs.getString("origin"));
-                System.out.println(rs.getString("destination"));
-                System.out.println(rs.getDate("depTime"));
-                System.out.println(rs.getDate("arriveTime"));
-                System.out.println(rs.getString("type"));
-                System.out.println(rs.getInt("seatsLeft"));
-                System.out.println(rs.getInt("seatsTaken"));
-                System.out.println(rs.getInt("fare") + "\n\n\n");
-            }
+                flights.add(new Flight(
+                        rs.getInt("id"),
+                        rs.getString("origin"),
+                        rs.getString("destination"),
+                        rs.getString("depTime"),
+                        rs.getString("arriveTime"),
+                        rs.getString("type"),
+                        rs.getInt("seatsLeft"),
+                        rs.getInt("seatsTaken"),
+                        rs.getInt("fare")
 
+                ));
+            }
+        return flights;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,15 +103,15 @@ public class DBFlight {
         }
     }
 
-    public static void updateFlight(String origin, String destination, Date depTime, Date arriveTime, String type, int seatsLeft, int seatsTaken, int fare, int id) {
+    public static void updateFlight(String origin, String destination, String depTime, String arriveTime, String type, int seatsLeft, int seatsTaken, int fare, int id) {
         String sql = "update groupnamedatabase.flights set flightId=(?),origin=(?),destination=(?),depTime=(?),arriveTime=(?),type=(?),seatsLeft=(?),seatsTaken=(?),fare=(?) where id=(?)";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, origin);
             pst.setString(2, destination);
-            pst.setDate(3, depTime);
-            pst.setDate(4, arriveTime);
+            pst.setString(3, depTime);
+            pst.setString(4, arriveTime);
             pst.setString(5, type);
             pst.setInt(6, seatsLeft);
             pst.setInt(7, seatsTaken);

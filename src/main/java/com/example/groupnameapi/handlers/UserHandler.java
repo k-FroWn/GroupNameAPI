@@ -50,7 +50,6 @@ public class UserHandler {
     }
 
     public UserF findByUsernamePassword(String username, String password) {
-        String Password="0";
-        return DBUser.selectUser(username,Password);
+        return DBUser.selectUser(username,password);
     }
 }
