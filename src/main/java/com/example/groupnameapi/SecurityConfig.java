@@ -55,6 +55,7 @@ public class SecurityConfig {
                 //.requestMatchers("/index.html").permitAll()
                 //.requestMatchers("/create.html").permitAll()
                 //.requestMatchers("/accounts/login.html").permitAll()
+                .requestMatchers("/users/**").permitAll()
                 .anyRequest().authenticated()).httpBasic(Customizer.withDefaults());
 
         http.sessionManagement((sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)));
